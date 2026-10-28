@@ -1,22 +1,14 @@
-/* TaskVille motion layer v4 */
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #3b82f6;outline-offset:3px;border-radius:4px}
+/* TaskVille motion layer v4 (franquicias) */
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #2879c7;outline-offset:3px;border-radius:4px}
 
-/* ---- Header flicker fix: no backdrop-filter, no blurred fixed layer ---- */
-.header{background:rgba(255,255,255,.97);-webkit-backdrop-filter:none;backdrop-filter:none;transition:box-shadow .25s ease}
+/* ---- Header: no blurred backdrop, shadow on scroll ---- */
+.header{background:#ffffffee;-webkit-backdrop-filter:none;backdrop-filter:none;transition:box-shadow .25s ease}
 .header.is-scrolled{box-shadow:0 8px 24px rgba(18,64,110,.12)}
-.badge-pill,.btn-secondary,.floor-callout,.surface-panel,footer{-webkit-backdrop-filter:none;backdrop-filter:none}
-.daylight-parallax-wrapper{filter:none;transform:none}
-.day-cloud{will-change:transform}
-.sun-glow{will-change:transform,opacity}
 
-.tower-freestanding:hover img{transform:none}
-.tv-progress{position:fixed;left:0;top:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#3b82f6,#059669);z-index:60;pointer-events:none;will-change:transform}
-.btn-primary{position:relative;overflow:hidden}
-.btn-primary::after{content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s ease;pointer-events:none}
-.btn-primary:hover::after{left:130%}
-.badge-pill .dot{position:relative}
-.badge-pill .dot::after{content:'';position:absolute;inset:0;border-radius:50%;background:#059669}
-.pricing-card.popular::before{content:'';position:absolute;inset:-2px;border-radius:inherit;box-shadow:0 0 38px rgba(59,130,246,.6);opacity:.3;pointer-events:none}
+.tv-progress{position:fixed;left:0;top:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#2879c7,#159a76);z-index:60;pointer-events:none;will-change:transform}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s ease;pointer-events:none}
+.btn:hover::after{left:130%}
 
 @media (prefers-reduced-motion: no-preference){
   .hero-copy>*{animation:tvUp .8s cubic-bezier(.2,.7,.2,1) both}
@@ -29,17 +21,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #3b
   .hero-copy>*:nth-child(7){animation-delay:.56s}
   @keyframes tvUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 
-  .gradient-text{background-image:linear-gradient(110deg,#1d4ed8,#3b82f6,#059669,#3b82f6,#1d4ed8);background-size:220% 100%;animation:tvDrift2 9s linear infinite}
-  @keyframes tvDrift2{from{background-position:0% 0}to{background-position:220% 0}}
+  .gradient{background-image:linear-gradient(110deg,#8257eb,#2879d5,#8257eb);background-size:220% 100%;animation:tvDrift 9s linear infinite}
+  @keyframes tvDrift{from{background-position:0% 0}to{background-position:220% 0}}
 
-  .badge-pill .dot::after{animation:tvPing 1.8s ease-out infinite}
-  @keyframes tvPing{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.2);opacity:0}}
-  .pricing-card.popular::before{animation:tvGlow 3s ease-in-out infinite}
-  @keyframes tvGlow{0%,100%{opacity:.2}50%{opacity:.75}}
-
-  .floor-callout{animation:tvFloat 5s ease-in-out infinite}
-  .callout-ops{animation-delay:-1.6s}
-  .callout-marketing{animation-delay:-3.2s}
+  .floor{animation:tvFloat 5s ease-in-out infinite}
+  .f-sa{animation-delay:-1.6s}
+  .f-fi{animation-delay:-3.2s}
   @keyframes tvFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
   .motion-ready .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--rd,0s)}

@@ -1,17 +1,17 @@
-/* TaskVille motion layer v4: animated real tower artwork */
+/* TaskVille motion layer v4 (franquicias): animated tower artwork + scroll effects */
 (function () {
   var d = document, w = window;
 
   function hero() {
-    var host = d.querySelector('.tower-freestanding');
+    var host = d.querySelector('.tower');
     if (!host || host.querySelector('.tv-anim')) return;
     var img = host.querySelector('img');
     if (!img) return;
     var src = (img.currentSrc || img.src).replace(/'/g, '%27');
     var css = [
-      '.tower-freestanding{position:relative}',
+      '.tower{position:relative}',
       '.tv-on img{opacity:0}',
-      '.tv-anim{position:absolute;inset:0;pointer-events:none}',
+      '.tv-anim{position:absolute;top:0;left:0;width:100%;aspect-ratio:928/1152;pointer-events:none}',
       '.tv-fa,.tv-fl,.tv-bg{position:absolute;inset:0}',
       '.tv-bg{background-size:100% 100%;background-repeat:no-repeat}',
       '.tv-anim i{position:absolute;display:block}',
@@ -97,7 +97,7 @@
   if (reduce || !('IntersectionObserver' in w)) return;
   d.documentElement.classList.add('motion-ready');
 
-  var revealSel = '.team-card,.workflow-card,.step-box,.pricing-card,.meta-box,.faq-item,.award-card,.final-cta,.office-preview,.section-intro';
+  var revealSel = '.card,.step,.dept,.gallery,.big,.win,.cta-panel,.faq details,.section-head';
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       if (!en.isIntersecting) return;
@@ -143,7 +143,7 @@
       setTimeout(function () { run(o); }, 300);
     });
   }, { threshold: 0.6 });
-  [].slice.call(d.querySelectorAll('.hero-metric-item h4,.price-num')).forEach(function (el) {
+  [].slice.call(d.querySelectorAll('.big strong')).forEach(function (el) {
     var o = prep(el);
     if (!o) return;
     o.n.nodeValue = o.t.replace(o.m, fmt(0, o.c));
@@ -152,13 +152,12 @@
   });
 
   if (w.matchMedia && w.matchMedia('(hover: hover)').matches) {
-    [].slice.call(d.querySelectorAll('.team-card,.workflow-card,.step-box,.pricing-card,.meta-box')).forEach(function (el) {
+    [].slice.call(d.querySelectorAll('.card,.step,.dept')).forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         if (el.classList.contains('reveal')) return;
         var r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-        var pop = el.classList.contains('popular') && w.innerWidth > 1024 ? ' scale(1.02)' : '';
         el.style.transition = 'transform .12s ease-out, box-shadow .25s ease';
-        el.style.transform = 'perspective(900px) rotateX(' + ((0.5 - py) * 6).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 8).toFixed(2) + 'deg) translateY(-4px)' + pop;
+        el.style.transform = 'perspective(900px) rotateX(' + ((0.5 - py) * 6).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 8).toFixed(2) + 'deg) translateY(-4px)';
       });
       el.addEventListener('mouseleave', function () { el.style.transition = ''; el.style.transform = ''; });
     });
